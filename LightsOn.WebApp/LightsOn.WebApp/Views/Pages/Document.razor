@@ -1,0 +1,135 @@
+@page "/document"
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Calendars
+
+<SfButton @onclick="GeneratePdf">Згенерувати ПДФ</SfButton>
+
+<div class="header-info">
+    <SfTextBox @bind-Value="headerInfo.FullName" Placeholder="Повне ім'я"></SfTextBox>
+    <SfTextBox @bind-Value="headerInfo.AccountNumber" Placeholder="Рахунок"></SfTextBox>
+    <SfTextBox @bind-Value="headerInfo.BankName" Placeholder="Банк"></SfTextBox>
+    <SfTextBox @bind-Value="headerInfo.IPN" Placeholder="IPN"></SfTextBox>
+    <SfTextBox @bind-Value="headerInfo.MFO" Placeholder="МФО"></SfTextBox>
+    <SfTextBox @bind-Value="headerInfo.EDRPOU" Placeholder="ЄДРПОУ"></SfTextBox>
+    @* <SfDatePicker @bind-Value="headerInfo.Date" Placeholder="Дата"></SfDatePicker> *@
+</div>
+<div class="table-header">
+    <p>Дата: @headerInfo.Date.ToString("dd.MM.yyyy")</p>
+</div>
+
+<SfGrid DataSource="@selectedProducts" AllowPaging="false">
+    <GridColumns>
+        <GridColumn Field=@nameof(Product.Id) HeaderText="№" Width="50"></GridColumn>
+        <GridColumn Field=@nameof(Product.Name) HeaderText="Товар"></GridColumn>
+        <GridColumn Field=@nameof(Product.Quantity) HeaderText="Кількість"></GridColumn>
+        <GridColumn Field=@nameof(Product.Unit) HeaderText="Одиниця вимірювання"></GridColumn>
+        <GridColumn Field=@nameof(Product.Price) HeaderText="Ціна з ПДВ" Format="C2"></GridColumn>
+        <GridColumn Field=@nameof(Product.Total) HeaderText="Сума з ПДВ" Format="C2"></GridColumn>
+    </GridColumns>
+</SfGrid>
+
+<SfDialog Width="800px" Height="500px" IsModal="true" @bind-Visible="isDialogVisible" CloseOnEscape="true">
+    <DialogTemplates>
+        <Header>Вибір товару</Header>
+        <Content>
+            <div>
+                <SfDropDownList TValue="int" TItem="Product" DataSource="@products"
+                                Placeholder="Оберіть товар"
+                                @bind-Value="selectedProductId">
+                    <DropDownListFieldSettings Text="Name" Value="Id"></DropDownListFieldSettings>
+                </SfDropDownList>
+
+                <SfNumericTextBox TValue="int" @bind-Value="selectedQuantity" Min="1" Placeholder="Вкажіть кількість" CssClass="form-control my-2" />
+            </div>
+        </Content>
+        <FooterTemplate>
+            <div>
+                <SfButton CssClass="btn btn-success" @onclick="AddProductToList">Додати товар</SfButton>
+                <SfButton CssClass="btn btn-secondary" @onclick="() => isDialogVisible = false">Закрити</SfButton>
+            </div>
+        </FooterTemplate>
+    </DialogTemplates>
+</SfDialog>
+
+<SfButton CssClass="btn btn-primary" @onclick="() => isDialogVisible = true">Додати товар</SfButton>
+<SfButton CssClass="btn btn-primary" @onclick="() => isDialogVisible = true">Видалити товар</SfButton>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    .sf-grid .e-headercell {
+        border: 2px solid black;
+    }
+    .sf-grid .e-rowcell {
+        border: 2px solid black;
+    }
+
+    /* Стилі для Syncfusion Grid */
+    .sf-grid .e-headercell, .sf-grid .e-rowcell, .sf-grid .e-gridheader {
+        font-size: 18px; /* Збільшення розміру шрифту */
+        color: black; /* Зміна кольору шрифту на чорний */
+        border: 2px solid black; /* Збільшення контурів */
+    }
+
+    .sf-grid .e-grid .e-table {
+        border-collapse: collapse;
+    }
+
+    .header-info {
+        margin: 30px 100px;
+        text-align: center;
+    }
+
+    .header-info h2, .header-info p {
+        margin: 10px 0;  /* Відступи всередині блоку header-info */
+    }
+
+    /* Стилізація для таблиці і заголовку таблиці */
+    .table-header {
+        text-align: left;  /* Вирівнювання заголовку таблиці по центру */
+        margin-top: 20px;
+        margin-bottom: 20px/* Відступ зверху перед таблицею */
+    }
+
+    /* Стилі для заголовків і тексту над таблицею */
+    .header-info h2, .header-info p, .table-header p {
+        font-size: 28px; /* Розмір шрифту для заголовку та іншого тексту над таблицею */
+        color: black; /* Забезпечуємо, що текст чорного кольору */
+    }
+
+    /* Стилі для елементів всередині таблиці */
+    .sf-grid .e-headercell, .sf-grid .e-rowcell {
+        font-size: 24px; /* Розмір шрифту для тексту в заголовках стовпців та комірках таблиці */
+        color: black; /* Колір тексту */
+    }
+
+    /* Зберігаємо інші вже існуючі стилі */
+    .sf-grid .e-headercell, .sf-grid .e-rowcell, .sf-grid .e-gridheader {
+        border: 2px solid black; /* Збільшення контурів */
+    }
+
+    .sf-grid .e-grid .e-table {
+        border-collapse: collapse; /* Колапс меж */
+    }
+
+
+
+</style>
