@@ -1,0 +1,169 @@
+﻿@using System.Collections.Immutable
+@using Syncfusion.Blazor.Cards;
+@using LightsOn.WebApp.Views.Bases
+@using Syncfusion.Blazor.Maps
+
+<div @attributes="AdditionalAttributes" class="working-hours-map" id="workingHoursMap">
+    <SfCard>
+        <CardHeader Title="Контакти"></CardHeader>
+        <CardContent>
+            <div class="working-hours-container">
+                <div class="working-hours-details">
+                    <div class="working-hours-details-text">
+                        <div class="visit-info">
+                            <ImageBase Src="/images/office.svg"
+                                       CssClass="icon"></ImageBase>
+                            <div class="text-come-to-you-container">
+                                @foreach (var streetMenu in StreetMenu?.StreetMenuItems ?? ImmutableList<StreetMenuItem>.Empty)
+                                {
+                                    <LabelBase Label=@streetMenu.Street CssClass="hours-label-work"></LabelBase>
+                                }
+                            </div>
+                            
+                        </div>
+
+                        <div class="visit-info">
+                            <ImageBase Src="/images/boy_and_hand.svg" Alt="Хлопчик, який махає рукою"
+                                       CssClass="icon"></ImageBase>
+                            <div class="text-come-to-you-container">
+                                <LabelBase Label="Графік роботи" CssClass="text-come-to-you"></LabelBase>
+                                <LabelBase Label="з 8:00 до 18:00 пн-нд" CssClass="hours-label-work"></LabelBase>
+                            </div>
+                        </div>
+                        <div class="visit-info">
+                            <ImageBase Src="/images/mimi_phone.svg"
+                                       CssClass="icon"></ImageBase>
+                            <div class="text-come-to-you-container">
+                                @foreach (var phoneNumber in PhoneNumberMenu?.PhoneNumberItems ?? ImmutableList<PhoneNumberMenuItem>.Empty)
+                                {	
+                                    <a href="tel:@phoneNumber.PhoneNumber" class="hours-label-work">@phoneNumber.PhoneNumber</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="google-map-container">
+                        <SfMaps Width="500px" Height="350px">
+                            <MapsZoomSettings ZoomFactor="15" MinZoom="13" MaxZoom="17"></MapsZoomSettings>
+                            <MapsCenterPosition Latitude="49.8075994453431" Longitude="23.905400226487536"></MapsCenterPosition>
+
+                            <MapsLayers>
+                                <MapsLayer UrlTemplate="https://tile.openstreetmap.org/level/tileX/tileY.png" TValue="string">
+                                    <MapsMarkerSettings>
+                                        <MapsMarker Visible="true"
+                                                    Height="25"
+                                                    Width="20"
+                                                    DataSource="Cities"
+                                                    TValue="City">
+                                        </MapsMarker>
+                                    </MapsMarkerSettings>
+                                </MapsLayer>
+                            </MapsLayers>
+                        </SfMaps>
+                    </div>
+
+                </div>
+            </div>
+        </CardContent>
+    </SfCard>
+    
+</div>
+
+<style>   
+    .icon {
+        width: 64px;
+    }
+    
+    .working-hours-map{
+        margin-top: 50px;
+    }
+
+    .working-hours-details {
+        display: flex;
+    }
+
+    .working-hours-details-text {
+        flex: 1; 
+        order: 2;
+        max-width: 450px;
+    }
+
+    .google-map-container {
+        flex: 1;
+        order: 1;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .working-hours-details {
+        display: flex;
+        align-items: flex-start;
+    }
+    
+    .hours-label, .hours-label-work {
+        display: block;
+        font-size: 25px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        white-space: pre-line;
+    }
+    .hours-label-work{
+        margin-top: 5px;
+        margin-bottom: 0;
+    }
+    .visit-info {
+        display: flex;
+        margin-top: 30px;
+        padding: 10px;
+        background-color: #ffffff; 
+        border-radius: 10px;
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+        align-items: center;
+    }
+    .hours{
+        display: block;
+        padding: 10px;
+    }
+    .office-street-addition-card{
+        margin-top: 15px !important;
+        font-size: 16px;
+    }
+    
+    .text-come-to-you-container{
+        display: block;
+        margin-right: 10px;
+    }
+    
+    .text-come-to-you{
+        font-size: 30px;
+        text-transform: uppercase;
+        font-family: 'Exo_2', sans-serif;
+        padding-bottom: 10px;
+    }
+    
+    .address-label{
+        font-size: 25px;
+        margin-top: 30px;
+        font-family: 'Exo_2', sans-serif;
+    }
+
+    .phone-number {
+        background-color: #FFDD00;
+        color: #000;
+        border-radius: 10px;
+        padding: 10px;
+        font-weight: bold;
+        margin: 5px 5px;
+        font-size: 25px;
+        text-align: center;
+        font-family: 'Exo_2', sans-serif;
+    }
+    
+    .contact{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+</style>

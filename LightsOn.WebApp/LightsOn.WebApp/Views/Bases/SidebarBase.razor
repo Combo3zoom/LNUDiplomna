@@ -1,0 +1,25 @@
+﻿@using Syncfusion.Blazor.Navigations
+@using Syncfusion.Blazor.Buttons
+
+<div class="sidebar-container">
+    <SfSidebar @ref="SfSidebar" 
+               DockSize="72px" 
+               EnableDock=true 
+               IsOpen="true" 
+               class="custom-sidebar"
+               Target=".sidebar-container">
+        
+            <div class="dock">
+                <ul class="sidebar_elements">
+                    @foreach (var menuItem in SidebarMenu.SidebarMenuItems)
+                    {
+                        <li class="sidebar-item" id="toggle" @onclick="() => menuItem.OnClickEventHandler()">
+                            @* <span class="e-icons @menuItem.IconSubClass"></span> *@
+                            <span class="e-text" title="@menuItem.Title">@menuItem.Title</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        
+    </SfSidebar>
+</div>

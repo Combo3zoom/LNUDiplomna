@@ -1,0 +1,122 @@
+﻿@using Syncfusion.Blazor.Cards;
+@using LightsOn.WebApp.Views.Bases
+@using LightsOn.WebApp.Views.Components.Service
+
+<div class="card-container">
+    <SfCard>
+        <CardHeader Title="Чим ми можемо допомогти?"></CardHeader>
+        <CardContent>
+            <div class="test">
+                <div class="card-content">
+                    <div class="service-option-generate">
+                        <ImageBase Src="images/generator.svg" Alt="Генератор"
+                                   CssClass="service-option-generate img"></ImageBase>
+                        <LabelBase Label="Підбір дизель генераторів та їх
+                                          встановлення"
+                                   CssClass="text-service"></LabelBase>
+                    </div>
+
+                    <div class="service-option-service-tool">
+                        <ImageBase Src="images/service_tools.svg" Alt="Сервісні інструменти"
+                                   CssClass="service-option-service-tool img"></ImageBase>
+                        <LabelBase Label="Обслуговування та діагностика
+                                          енергетичного обладнання"
+                                   CssClass="text-service"></LabelBase>
+                    </div>
+
+                </div>
+
+                <div class="service-option-button">
+                    <ButtonBase Label="Детальніше" CssClass="detail-button" OnButtonPressed="OnButtonPressed"></ButtonBase>
+                </div>
+            </div>
+            <div class="@DetailsHiddenClass">
+                <Service></Service>
+            </div>
+        </CardContent>
+    </SfCard>
+</div>
+
+
+<style>
+    .hidden {
+        display: none;
+    }
+    
+    .card-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .e-card .e-card-header .e-card-header-caption .e-card-header-title {
+        font-family: 'Exo-2', sans-serif;
+        font-size: 40px;
+        line-height: 48px; 
+        text-align: center;
+    }
+    
+    .card-container{
+        margin-top: 40px;
+        background-color: #f4f4f4;
+    }
+    
+    .service-option-generate, .service-option-service-tool {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+     .service-option-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    
+    .detail-button {
+        background-color: #FFDD00;
+        color: #000;
+        border: none;
+        border-radius: 10px;
+        padding: 15px 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 25px;
+        font-family: 'Exo_2', sans-serif;
+    }
+    
+    .detail-button:hover {
+        background-color: #ECCB00; 
+    }
+    
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .circle-text span {
+        display: block;
+    }
+    .service-option-generate img {
+        margin-top: 30px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
+    
+    .service-option-service-tool img{
+         margin-top: 63px;
+         margin-bottom: 27px;
+         margin-right: 10px;
+    }
+    
+    .service-option-generate span, .service-option-service-tool span {
+        width: 100%;
+        display: block;
+        text-align: center;
+        font-size: 25px;
+        line-height: 30px;
+        font-family: 'Exo_2', sans-serif;
+        white-space: pre-line;
+       }
+</style>

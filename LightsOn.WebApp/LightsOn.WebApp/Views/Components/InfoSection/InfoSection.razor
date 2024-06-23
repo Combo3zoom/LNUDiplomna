@@ -1,0 +1,115 @@
+﻿@using System.Collections.Immutable
+@using LightsOn.WebApp.Views.Bases
+<div class="info-section">
+    <div class="phone-container">
+        <div class="icon-background">
+            <ImageBase Src="images/mobile.svg" Alt="Слухавка" CssClass="image-left"></ImageBase>
+        </div>
+        @foreach (var phoneNumber in PhoneNumberMenu?.PhoneNumberItems ?? ImmutableList<PhoneNumberMenuItem>.Empty)
+        {
+            <LabelBase Label=@phoneNumber.PhoneNumber CssClass="phone-number"></LabelBase>
+        }
+    </div>
+    
+    <div class="visit-container">
+        <div class="circle">
+            <ImageBase Src="images/boy_and_circle.svg" Alt="Хлопчина і коло" CssClass="image-central"></ImageBase>
+
+            <div class="circle-text">
+                <LabelBase Label="Візит до ВАС
+                            від - грн" 
+                           CssClass="large-text"></LabelBase>
+            </div>
+        </div>
+    </div>
+    <div class="map-container">
+        <div class="office-street">
+            @foreach (var street in StreetMenu?.StreetMenuItems ?? ImmutableList<StreetMenuItem>.Empty)
+            {
+                <LabelBase Label=@street.Street CssClass="street-text"></LabelBase>
+            }
+        </div>
+        <ImageBase Src="images/map.svg" Alt="Карта" CssClass="image-right"></ImageBase>
+
+    </div>
+</div>
+
+<style>
+    .e-card{
+        box-shadow: none;
+        background-color: #f4f4f4;
+    }
+     .phone-number {
+        background-color: #FFDD00;
+        color: #000;
+        border-radius: 10px;
+        padding: 10px;
+        font-weight: bold;
+        margin: 0 5px;
+        font-size: 30px;
+        text-align: center;
+        font-family: 'Exo_2', sans-serif;
+    }
+
+    .info-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        width: 100%;
+    }
+    .phone-container, .visit-container, .map-container {
+        flex-basis: 33%;
+        flex-grow: 1;
+        flex-shrink: 1;
+        text-align: center; 
+    }
+        
+    .phone-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+        
+    .icon-background {
+         margin-bottom: 4px;
+    }       
+        
+    .visit-container {
+        display: flex;
+        margin-right: 70px;
+        justify-content: center;
+        position: relative
+    }
+        
+    .circle {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin-right: 100px;
+    }
+        
+    .circle-text {
+        position: absolute;
+        top: 65%;
+        left: 45%;
+        width: 100%;
+    }
+    .street-text{
+        text-align: center;
+        font-family: "Exo_2", sans-serif;
+        font-size: 30px;
+        line-height: 36px;
+    }
+    .image-left, image-central, image-right {
+        margin-top: 10px;
+    }
+    
+    .large-text {
+        font-size: 30px;
+        line-height: 42px;
+        text-align: center;
+        font-family: 'Exo_2', sans-serif;
+        white-space: pre-line;
+    }
+</style>

@@ -1,0 +1,29 @@
+﻿@page "/"
+@using LightsOn.WebApp.Views.Components.InfoSection
+@using LightsOn.WebApp.Views.Components.WorkingHoursMap
+@using LightsOn.WebApp.Views.Components.CardContainer
+@using LightsOn.WebApp.Views.Components.CallButtonContainer
+@using LightsOn.WebApp.Views.Components.Service
+
+<PageTitle>Головна</PageTitle>
+
+<div class="main-container">
+    <CardContainer></CardContainer>
+    <WorkingHoursMap></WorkingHoursMap>
+    <CallButtonContainer></CallButtonContainer>
+</div>
+
+<style>
+  .main-container{
+    margin: 10px;
+  }
+</style>
+
+<script>
+  function scrollToElement(id) {
+    var element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>

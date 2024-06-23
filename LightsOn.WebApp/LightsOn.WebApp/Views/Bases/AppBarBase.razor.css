@@ -1,0 +1,6 @@
+﻿.appbar-line {
+    height: 2px;
+    background-color: blue;
+    width: calc(100% - 40px);
+    margin: 5px auto 0;
+}

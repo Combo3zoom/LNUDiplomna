@@ -1,0 +1,72 @@
+﻿::deep .service-option-container {
+    display: flex;
+    justify-content: center;
+}
+
+::deep .price-in-grn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+}
+::deep .price-in-grn-text{
+    margin-right: 20px;
+    font-family: "Exo_2", sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+::deep .service-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: #f4f4f4;
+    padding: 20px;
+    position: relative;
+    justify-content: center;
+}
+
+::deep .service-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    background-color: #4E6AD9;
+}
+
+::deep .image-thunder {
+    margin-bottom: 80px;
+    margin-right: 40px;
+    margin-left: 70px;
+}
+
+::deep .text-to-service-item {
+    flex-grow: 1;
+}
+
+::deep .text-service-header {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+::deep .text-service {
+    display: block;
+    font-size: 25px;
+    line-height: 30px;
+    width: 813px;
+    white-space: pre-line;
+}
+
+::deep .text-price {
+    background: rgba(255, 227, 0, 0.25);;
+    color: black;
+    padding: 10px 20px;
+    font-size: 30px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    height: 55px;
+    width: 166px;
+}

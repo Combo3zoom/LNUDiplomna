@@ -1,0 +1,172 @@
+﻿@inject NavigationManager NavigationManager
+@using Syncfusion.Blazor.Cards;
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.LinearGauge
+@using LightsOn.WebApp.Views.Bases
+
+<div class="call-button-container">
+    <ButtonBase OnButtonPressed="OpenDialog"
+                CssClass="call-button">
+        <ImageBase Src="/images/mimi_phone.svg"></ImageBase>
+    </ButtonBase>
+</div>
+
+<SfDialog Width="750px" Height="580px" ShowCloseIcon="true" IsModal="true" Visible="@_showDialog" 
+          CssClass="call-button-dialog">
+    <DialogTemplates>
+        <Content>
+            <EditForm Model="@Customer" OnValidSubmit="SubmitCallRequest" FormName="CustomerWaitCalling">
+                <div class="dialog-content centered-content">
+                    <SfTextBox @bind-Value="@Customer.Name"
+                               @oninput="ValidateName"
+                               Placeholder="Як до вас звертатись?"
+                               CssClass="e-filled custom-sf-textbox"/>
+                    @if (!string.IsNullOrEmpty(_nameValidationMessage))
+                    {
+                        <LabelBase Label="@_nameValidationMessage"
+                                   CssClass="validation-message">
+                        </LabelBase>
+                    }
+
+                    <SfTextBox @bind-Value="@Customer.PhoneNumber"
+                               @oninput="ValidatePhoneNumber"
+                               Placeholder="Ваш номер телефону"
+                               CssClass="e-filled custom-sf-textbox"/>
+                    @if (!string.IsNullOrEmpty(_phoneValidationMessage))
+                    {
+                        <LabelBase
+                            Label="@_phoneValidationMessage"
+                            CssClass="validation-message">
+                        </LabelBase>
+                    }
+
+                    <SfTextBox @bind-Value="@Customer.ProblemDescription"
+                               Placeholder="Опишіть проблему"
+                               CssClass="e-filled custom-sf-textbox"/>
+
+                    <LabelBase
+                        Label="З вами якнайшвидше з'яжеться наш оператор"
+                        CssClass="dialog-text">
+                    </LabelBase>
+
+                    
+                    <SfTooltip @ref="_tooltip" Target=".e-primary" Content="@_tooltipContent">
+                        <ButtonBase
+                           CssClass="e-primary">
+                           Замовити виклик
+                           <span><img src="images/mimi_phone.svg" alt="Custom Icon" class="phone-icon"/></span>
+                       </ButtonBase>
+                    </SfTooltip>
+
+                </div>
+            </EditForm>
+        </Content>
+    </DialogTemplates>
+</SfDialog>
+
+
+
+<style>
+    .call-button-dialog.e-dialog .e-dlg-header-content {
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+    
+    .call-button-dialog.e-dialog .e-dlg-content {
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .call-button-dialog.e-dialog {
+        border: none;
+    }
+    
+    .call-button-dialog {
+        border-radius: 10px;
+    }
+    
+    .call-button-container {
+        display: flex;
+        justify-content: flex-end; 
+        margin-top: 40px;
+        padding-right: 30px;
+        position: fixed; 
+        bottom: 8px;
+        right: 8px;
+        z-index: 1000;
+    }
+    
+    .call-button,  .e-btn.e-primary{
+        background-color: #FFDD00; 
+        color: #000; 
+        border: none; 
+        border-radius: 10px; 
+        padding: 15px 30px; 
+        font-weight: bold; 
+        text-transform: uppercase; 
+        font-size: 30px;
+        line-height: 36px;
+        font-family: 'Exo_2', sans-serif;
+    }
+    .e-btn.e-primary {
+           margin-top: 40px;
+           width: auto;
+       }
+       
+    .phone-icon {
+        vertical-align: middle;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .call-button:hover {
+        background-color: #ECCB00;
+    }
+    
+    
+    .sf-dialog {
+        font-family: 'Exo 2', sans-serif; 
+    }
+    .e-dlg-content, .e-dialog .e-dlg-header-content{
+        background-color: #4E6AD94F ;
+    }
+
+   .dialog-text {
+       font-size: 20px;
+       font-family: "Exo_2", sans-serif;
+       margin-top: 30px;
+   }
+   .centered-content {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       height: 100%;
+   }
+   
+   .e-primary:hover {
+       background-color: #ECCB00;
+   }
+
+    
+    .e-primary:hover {
+        background-color: #0056b3;
+    }
+
+     .e-filled.custom-sf-textbox.e-input-group.e-control-container.e-control-wrapper {
+         border-radius: 10px;
+         border-color: #9D9D9C;
+         height: 80px;
+         margin-bottom: 10px;
+     }
+
+
+    .validation-message {
+        color: red;
+        font-size: 13px;
+        margin-bottom: 15px;
+        font-family: "Exo_2", sans-serif;
+    }
+</style>

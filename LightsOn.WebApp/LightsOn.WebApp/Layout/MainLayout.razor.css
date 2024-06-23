@@ -1,0 +1,29 @@
+.grid-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto;
+    grid-template-areas:
+    "app-bar"
+    "content";
+    height: 100vh;
+}
+
+@media screen and (min-width: 1300px) {
+    .grid-container {
+        margin-left: 128px;
+        margin-right: 128px;
+    }
+}
+
+.app-bar-container {
+    grid-area: app-bar;
+}
+
+.sidebar-container {
+    grid-area: sidebar;
+}
+
+.content-container {
+    grid-area: content;
+    margin: 20px;
+}

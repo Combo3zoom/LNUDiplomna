@@ -1,0 +1,45 @@
+﻿@using Syncfusion.Blazor.Buttons
+@using Syncfusion.Blazor.Navigations
+
+<div class="control-container">
+    <div class="items">
+        <img src="images/logo.jpg" class="logo" alt="logo"/>
+        <label class="custom-appbar">LGenera</label>
+    </div>
+    <div class="appbar-line"></div>
+</div>
+
+<style>
+    .control-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .items {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;    
+    }
+    .logo {
+        height: 120px;
+    }
+    .e-appbar.e-inherit {
+        border: none;
+    }
+    .e-appbar {
+        box-shadow: unset;
+    }
+    
+    .e-btn.e-inherit {
+        font-size: 48px;
+        font-family: 'Exo_2', sans-serif;
+        font-weight: normal;
+        box-shadow: unset;
+    }
+
+    .custom-appbar {
+        font-size: 48px;
+        font-family: 'Exo_2', sans-serif;
+    }
+</style>

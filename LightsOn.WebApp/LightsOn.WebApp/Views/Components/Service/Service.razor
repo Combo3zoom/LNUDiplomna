@@ -1,0 +1,103 @@
+﻿@using System.Collections.Immutable
+@using LightsOn.WebApp.Views.Bases
+<div class="service-option-container">
+        <ImageBase Src="images/big_generator.svg" Alt="Генератор"
+                   CssClass="service-option-generate"></ImageBase>
+    </div>
+    
+    @foreach (var serviceItem in ServiceMenu?.ServiceItems ?? ImmutableList<ServiceItem>.Empty)
+    {
+        <div class="service-item">
+            <ImageBase Src="images/thunder.svg" CssClass="image-thunder" Alt="Thunder"></ImageBase>
+            <div class="text-to-service-item">
+                <LabelBase Label="@serviceItem.HeaderText"
+                           CssClass="text-service-header"></LabelBase>
+                <LabelBase Label="@serviceItem.MainText"
+                           CssClass="text-service"></LabelBase>
+
+            </div>
+
+        </div>
+    }
+
+<style>
+    body{
+        background-color: #ffffff;
+    }
+    
+    .service-option-container {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .price-in-grn {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 20px;
+    }
+    .price-in-grn-text{
+        margin-right: 20px;
+        font-family: "Exo_2", sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    .image-pig {
+    }
+    
+    .service-item {
+        display: flex;
+        align-items: flex-start;
+        background-color: #f4f4f4;
+        padding: 20px;
+        position: relative;
+        justify-content: center;
+        margin: 20px;
+    }
+    
+    .service-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 50px;
+        background-color: #4E6AD9;
+    }
+    
+    .image-thunder {
+        margin-bottom: 80px;
+        margin-right: 40px;
+        margin-left: 70px;
+    }
+    
+    .text-to-service-item {
+        flex-grow: 1;
+    }
+    
+    .text-service-header {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    
+    .text-service {
+        display: block;
+        font-size: 25px;
+        line-height: 30px;
+        width: 813px;
+        white-space: pre-line;
+    }
+    
+    .text-price {
+        background: rgba(255, 227, 0, 0.25);; 
+        color: black; 
+        padding: 5px 20px;
+        font-size: 25px;
+        border: none; 
+        border-radius: 10px; 
+        font-weight: bold;
+        white-space: pre-line;
+    }
+    
+</style>
